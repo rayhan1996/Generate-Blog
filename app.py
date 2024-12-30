@@ -7,7 +7,7 @@ import os
 
 # Load the API key from environment variables
 # Load the API key from environment variables
-api_key = os.getenv("OPENAI_API_KEY")  # Make sure to set your API key in environment variables
+api_key = st.secrets["general"]["OPENAI_API_KEY"]
 
 # Check if the API key is set
 if not api_key:
