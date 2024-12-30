@@ -5,6 +5,11 @@ from openai import OpenAI
 import requests
 import os
 
+import streamlit as st
+
+st.write("Secrets available: ", st.secrets)
+
+
 # Load the API key from environment variables
 # Load the API key from environment variables
 api_key = st.secrets["general"]["OPENAI_API_KEY"]
