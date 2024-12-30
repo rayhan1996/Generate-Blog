@@ -5,22 +5,17 @@ from openai import OpenAI
 import requests
 import os
 
-# Load the API key from environment variables
-api_key = st.secrets["general"]["OPENAI_API_KEY"]
+st.write("OPENAI API KEY:", st.secrets["OPENAI_API_KEY"])
 
-# Check if the API key is set
-if not api_key:
-    st.error("API key not found! Please set the 'OPENAI_API_KEY' in your secrets.")
+st.write(
+    "Has environment variables been set:",
+    os.environ["OPENAI_API_KEY"] == st.secrets["OPENAI_API_KEY"],
+)
+
+
 
 # Set OpenAI API key
-openai.api_key = api_key
-
-# Use the OpenAI API (example)
-st.write("OpenAI client initialized successfully!")
-
-st.write("Secrets available:", st.secrets)
-
-
+openai.OPENAI_API_KEY = api_key
 
 # Create an OpenAI client instance
 client = OpenAI(api_key=api_key)
