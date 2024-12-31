@@ -5,17 +5,15 @@ from openai import OpenAI
 import requests
 import os
 
-st.write("OPENAI API KEY:", st.secrets["OPENAI_API_KEY"])
+# Access the API key securely
+api_key = st.secrets["OPENAI_API_KEY"]
 
-st.write(
-    "Has environment variables been set:",
-    os.environ["OPENAI_API_KEY"] == st.secrets["OPENAI_API_KEY"],
-)
+# Set the OpenAI API key
+openai.api_key = api_key
 
-
-
-# Set OpenAI API key
-openai.OPENAI_API_KEY = api_key
+# Test the API
+response = openai.Model.list()
+st.write("Available models:", response)
 
 # Create an OpenAI client instance
 client = OpenAI(api_key=api_key)
