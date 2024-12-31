@@ -5,8 +5,9 @@ from openai import OpenAI
 import requests
 import os
 
+print(st.secrets)
 # Access the API key securely
-api_key = st.secrets["OPENAI_API_KEY"]
+api_key = st.secrets["openai"]
 
 # Set the OpenAI API key
 openai.api_key = api_key
