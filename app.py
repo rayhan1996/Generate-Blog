@@ -5,13 +5,16 @@ from openai import OpenAI
 import requests
 import os
 
-# Load the API key from environment variables
-# Load the API key from environment variables
-api_key = os.getenv("OPENAI_API_KEY")  # Make sure to set your API key in environment variables
+print(st.secrets)
+# Access the API key securely
+api_key = st.secrets["openai"]
 
-# Check if the API key is set
-if not api_key:
-    raise ValueError("API key not found. Please set the 'OPENAI_API_KEY' environment variable.")
+# Set the OpenAI API key
+openai.api_key = api_key
+
+# Test the API
+response = openai.Model.list()
+st.write("Available models:", response)
 
 # Create an OpenAI client instance
 client = OpenAI(api_key=api_key)
