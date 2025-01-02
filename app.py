@@ -17,7 +17,7 @@ st.write(
 openai.api_key = api_key
 
 # Test the API
-response = openai.Model.list()
+response = openai.models.list()
 st.write("Available models:", response)
 
 # Create an OpenAI client instance
