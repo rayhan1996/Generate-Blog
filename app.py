@@ -5,9 +5,13 @@ from openai import OpenAI
 import requests
 import os
 
-print(st.secrets)
 # Access the API key securely
 api_key = st.secrets["SOME_KEY"]
+
+st.write(
+    "Has environment variables been set:",
+    os.environ["SOME_KEY"] == st.secrets["SOME_KEY"],
+)
 
 # Set the OpenAI API key
 openai.api_key = api_key
