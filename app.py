@@ -18,6 +18,11 @@ openai.api_key = api_key
 
 # Test the API
 response = openai.models.list()
+
+# Extract and format the response
+models = response.get("data", [])  # Get the 'data' key which contains the models list
+st.write("Available models:", models)
+
 st.write("Available models:", response)
 
 # Create an OpenAI client instance
