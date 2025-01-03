@@ -152,22 +152,22 @@ def generate_full_blog(topic, parameters):
     conclusion = generate_conclusion(previous_text, parameters)
 
     # Combine all parts to form the full article
-    full_blog_text = f"عنوان مقاله: {topic}\n\n{introduction}\n\n{h2_sections}\n\n{conclusion}"
+    full_blog_text = f"عنوان مقاله: {topic}\n\n\n{introduction}\n\n{h2_sections}\n\n{conclusion}"
     return full_blog_text.strip()
 
 # Streamlit UI
-st.title("تولید محتوای فارسی(Farsi Content Generator)")
-topic = st.text_input("عنوان محتوا(Enter the Topic):", "سرعت رشد تکنولوژی")
+st.title("تولید محتوای فارسی (Farsi Content Generator)")
+topic = st.text_input("عنوان محتوا (Enter the Topic):", "سرعت رشد تکنولوژی")
 parameters = {
-    "tone": st.selectbox("لحن محتوا(Select Tone):", ["عامیانه", "رسمی"]),
-    "style": st.selectbox("سبک محتوا(Select Style):", ["طنز", "جدی"]),
+    "tone": st.selectbox("لحن محتوا (Select Tone):", ["عامیانه", "رسمی"]),
+    "style": st.selectbox("سبک محتوا (Select Style):", ["طنز", "جدی"]),
     "topic": topic,
-    "purpose": st.selectbox("هدف محتوا(Select Purpose):", ["بلاگ", "لندینگ پیج", "محصول"]),
-    "avoid_keywords": st.text_input("واژه هایی که نمیخواهید در متن استقاده شود(Avoid Keywords):", "ماشین"),
-    "include_keywords": st.text_input("واژه هایی که میخواهید در متن استفاده شود(Include Keywords):", "گوشی، موبایل، لپ‌تاپ، هوش مصنوعی"),
+    "purpose": st.selectbox("هدف محتوا (Select Purpose):", ["بلاگ", "لندینگ پیج", "محصول"]),
+    "avoid_keywords": st.text_input("واژه هایی که نمیخواهید در متن استقاده شود (Avoid Keywords):", "ماشین"),
+    "include_keywords": st.text_input("واژه هایی که میخواهید در متن استفاده شود (Include Keywords):", "گوشی، موبایل، لپ‌تاپ، هوش مصنوعی"),
     "h2_count": st.slider("H2 تعداد عنوان های (Number of H2 Titles):", 1, 10, 6),
     "meta_title": st.selectbox("عنوان متا (Include Meta Title):", ["داشته باشد", "نداشته باشد"]),
-    "figures_of_speech": st.selectbox("میزان ارایه های ادبی که به کار رود(Figures of Speech):", ["کم", "متوسط", "زیاد"])
+    "figures_of_speech": st.selectbox("میزان ارایه های ادبی که به کار رود (Figures of Speech):", ["کم", "متوسط", "زیاد"])
 }
 
 if st.button("Generate Blog"):
@@ -184,4 +184,6 @@ if st.button("Generate Blog"):
         )
         
         st.write(blog_text)
-        st.write(f" زمان صرف شده برای تولبد محتوا(Time taken): {end_time - start_time:.2f} seconds")
+        st.write(f" زمان صرف شده برای تولبد محتوا (Time taken): {end_time - start_time:.2f} seconds")
+        st.write(f" تعداد لغت به کار رفته در محتوا (Full content Text Length:): {len(blog_text.split())} ")
+    
