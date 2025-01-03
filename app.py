@@ -21,7 +21,6 @@ response = openai.models.list()
 
 # Extract the list of models
 models = response.data  # Access the `data` attribute directly
-st.write("Available models:", models)
 
 # Create an OpenAI client instance
 client = OpenAI(api_key=api_key)
@@ -157,18 +156,18 @@ def generate_full_blog(topic, parameters):
     return full_blog_text.strip()
 
 # Streamlit UI
-st.title("Farsi Content Generator")
-topic = st.text_input("Enter the Topic:", "سرعت رشد تکنولوژی")
+st.title("تولید محتوای فارسی(Farsi Content Generator)")
+topic = st.text_input("عنوان محتوا(Enter the Topic):", "سرعت رشد تکنولوژی")
 parameters = {
-    "tone": st.selectbox("Select Tone:", ["عامیانه", "رسمی"]),
-    "style": st.selectbox("Select Style:", ["طنز", "جدی"]),
+    "tone": st.selectbox("لحن محتوا(Select Tone):", ["عامیانه", "رسمی"]),
+    "style": st.selectbox("سبک محتوا(Select Style):", ["طنز", "جدی"]),
     "topic": topic,
-    "purpose": st.selectbox("Select Purpose:", ["بلاگ", "لندینگ پیج", "محصول"]),
-    "avoid_keywords": st.text_input("Avoid Keywords:", "ماشین"),
-    "include_keywords": st.text_input("Include Keywords:", "گوشی، موبایل، لپ‌تاپ، هوش مصنوعی"),
-    "h2_count": st.slider("Number of H2 Titles:", 1, 10, 6),
-    "meta_title": st.selectbox("Include Meta Title:", ["داشته باشد", "نداشته باشد"]),
-    "figures_of_speech": st.selectbox("Figures of Speech:", ["کم", "متوسط", "زیاد"])
+    "purpose": st.selectbox("هدف محتوا(Select Purpose):", ["بلاگ", "لندینگ پیج", "محصول"]),
+    "avoid_keywords": st.text_input("واژه هایی که نمیخواهید در متن استقاده شود(Avoid Keywords):", "ماشین"),
+    "include_keywords": st.text_input("واژه هایی که میخواهید در متن استفاده شود(Include Keywords):", "گوشی، موبایل، لپ‌تاپ، هوش مصنوعی"),
+    "h2_count": st.slider("H2 تعداد عنوان های (Number of H2 Titles):", 1, 10, 6),
+    "meta_title": st.selectbox("عنوان متا (Include Meta Title):", ["داشته باشد", "نداشته باشد"]),
+    "figures_of_speech": st.selectbox("میزان ارایه های ادبی که به کار رود(Figures of Speech):", ["کم", "متوسط", "زیاد"])
 }
 
 if st.button("Generate Blog"):
@@ -177,5 +176,12 @@ if st.button("Generate Blog"):
         blog_text = generate_full_blog(topic, parameters)
         end_time = time.time()
         st.success("Blog generated successfully!")
+        
+        # Apply right alignment and display the blog
+        st.markdown(
+            f"<div style='text-align: right; direction: rtl;'>{blog_text}</div>",
+            unsafe_allow_html=True
+        )
+        
         st.write(blog_text)
-        st.write(f"Time taken: {end_time - start_time:.2f} seconds")
+        st.write(f" زمان صرف شده برای تولبد محتوا(Time taken): {end_time - start_time:.2f} seconds")
